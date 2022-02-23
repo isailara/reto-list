@@ -29,7 +29,7 @@ namespace ArrayList
             team1.remove(4);
             if (team1.getAt(0).Equals("Salomón"))
             {
-                team1.setAt(0, "Pachito"); //Ssustituye a Salomón por Pachito
+                team1.setAt(0, "Pachito"); //Sustituye a Salomón por Pachito
             }
             team1.PrintArray(); //Debe de imprimir Pachito, Yael, Paco y Luis
             Console.WriteLine("El team 1 tiene: " + team1.getSize() + " integrantes"); //Debe de tener 4 integrantes
