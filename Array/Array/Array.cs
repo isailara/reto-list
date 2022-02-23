@@ -13,7 +13,8 @@ namespace ArrayList
         {
             UArrayList team1 = new UArrayList();
             UArrayList team2 = new UArrayList();
-
+            ArrayListIterator iterator;
+            //Help
             team1.addAtTail("Jesús");
             team1.addAtTail("Salomón");
             team1.addAtTail("Yael");
@@ -21,7 +22,14 @@ namespace ArrayList
             team1.addAtTail("Paco");
             team1.addAtTail("Luis");
             team1.addAtTail("Annie");
-            team1.PrintArray(); //Debe de imprimir Luis, Salomón, Yael, Hugo, Paco y Luis
+            //team1.PrintArray(); //Debe de imprimir Luis, Salomón, Yael, Hugo, Paco y Luis
+            iterator = team1.getIterator();
+
+            while (iterator.hasNext())
+            {
+                String name = iterator.next();
+                Console.WriteLine(name);    //Debe de imprimir Luis, Salomón, Yael, Hugo, Paco y Luis
+            }
             Console.WriteLine("El team 1 tiene: " + team1.getSize() + " integrantes"); //Debe de tener 7 integrantes
             Console.WriteLine();
             team1.remove(0);
@@ -41,7 +49,14 @@ namespace ArrayList
             team2.addAtFront("Eduardo");
             team2.addAtFront("Quenira");
             Console.WriteLine();
-            team2.PrintArray(); //Debe de imprimir Cristian, Daniel, Diego, Francisco y Eduardo
+            //team2.PrintArray(); //Debe de imprimir Cristian, Daniel, Diego, Francisco, Eduardo y Quenira
+            iterator = team2.getIterator();
+
+            while (iterator.hasNext())
+            {
+                String name = iterator.next();
+                Console.WriteLine(name);    //Debe de imprimir Cristian, Daniel, Diego, Francisco, Eduardo y Quenira
+            }
             Console.WriteLine("El team 2 tiene: " + team2.getSize() + " integrantes"); //Debe de tener 6 integrantes
             Console.WriteLine();
             team2.remove(0);

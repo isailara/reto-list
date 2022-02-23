@@ -109,4 +109,9 @@ public class UArrayList
         }
     }
 
+    public ArrayListIterator getIterator()
+    {
+        return new ArrayListIterator(this);
+    }
+
 }
