@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class LinkedListNode
+namespace List.DbLinkedList
 {
-    public string data;
-    public LinkedListNode next;
-    public LinkedListNode previous;
-
-    public LinkedListNode(string data)
+    class LinkedListNode
     {
-        this.data = data;
+        public string data;
+        public LinkedListNode next;
+        public LinkedListNode previous;
+
+        public LinkedListNode(string data)
+        {
+            this.data = data;
+        }
     }
 }

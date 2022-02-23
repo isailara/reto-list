@@ -4,151 +4,162 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class DbLinkedList
+
+namespace List.DbLinkedList
 {
-    private LinkedListNode head;
-    private LinkedListNode tail;
-    private int size;
-
-    public void addAtFront(String data)
+    class DbLinkedList
     {
-        LinkedListNode node = new LinkedListNode(data);
+        private LinkedListNode head;
+        private LinkedListNode tail;
+        private int size;
 
-        if (size == 0)
+        public void addAtFront(String data)
         {
-            tail = node;
-        }
-        else
-        {
-            head.previous = node;
-        }
-        node.next = head;
-        head = node;
+            LinkedListNode node = new LinkedListNode(data);
 
-        size++;
-    }
-
-    public void addAtTail(String data)
-    {
-        LinkedListNode node = new LinkedListNode(data);
-
-        //node.data=data;
-
-        if (size == 0)
-        {
+            if (size == 0)
+            {
+                tail = node;
+            }
+            else
+            {
+                head.previous = node;
+            }
+            node.next = head;
             head = node;
+
+            size++;
         }
-        else
+
+        public void addAtTail(String data)
         {
-            tail.next = node;
-            node.previous = tail;
+            LinkedListNode node = new LinkedListNode(data);
+
+            //node.data=data;
+
+            if (size == 0)
+            {
+                head = node;
+            }
+            else
+            {
+                tail.next = node;
+                node.previous = tail;
+            }
+
+            tail = node;
+            size++;
         }
 
-        tail = node;
-        size++;
-    }
-
-    public void remove(int index)
-    {
-        LinkedListNode node = findNode(index);
-
-        if (node == null)
+        public void remove(int index)
         {
-            return;
+            LinkedListNode node = findNode(index);
+
+            if (node == null)
+            {
+                return;
+            }
+
+            if (size == 1)
+            {
+                head = null;
+                tail = null;
+            }
+            else if (node == head)
+            {
+                head = node.next;
+                if (head != null)
+                {
+                    head.previous = null;
+                }
+            }
+            else if (node == tail)
+            {
+                tail = node.previous;
+                if (tail != null)
+                {
+                    tail.next = null;
+                }
+            }
+            else
+            {
+                node.previous.next = node.next;
+                node.next.previous = node.previous;
+            }
+            size--;
         }
 
-        if (size == 1)
+        private LinkedListNode findNode(int index)
+        {
+            if (index < 0 || index >= size)
+            {
+                return null;
+            }
+
+            LinkedListNode node = head;
+            int currentIndex = 0;
+
+            while (currentIndex != index)
+            {
+                currentIndex++;
+                node = node.next;
+            }
+
+            return node;
+        }
+
+        public void removeAll()
         {
             head = null;
             tail = null;
+            size = 0;
         }
-        else if (node == head)
+
+        public void PrintList()
         {
-            head = node.next;
-            if (head != null)
+            LinkedListNode runner = head;
+            while (runner != null)
             {
-                head.previous = null;
+                Console.WriteLine(runner.data);
+                runner = runner.next;
             }
         }
-        else if (node == tail)
+
+        public int getSize()
         {
-            tail = node.previous;
-            if (tail != null)
+            return size;
+        }
+
+        public string getAt(int index)
+        {
+            LinkedListNode node = findNode(index);
+
+            if (node == null)
             {
-                tail.next = null;
+                return null;
+            }
+            else
+            {
+                return node.data;
+            }
+
+        }
+
+        public void setAt(int index, String data)
+        {
+            LinkedListNode node = findNode(index);
+
+            if (node != null)
+            {
+                node.data = data;
             }
         }
-        else
+
+        public LinkedListIterator getIterator()
         {
-            node.previous.next = node.next;
-            node.next.previous = node.previous;
-        }
-        size--;
-    }
-
-    private LinkedListNode findNode(int index)
-    {
-        if (index < 0 || index >= size)
-        {
-            return null;
-        }
-
-        LinkedListNode node = head;
-        int currentIndex = 0;
-
-        while (currentIndex != index)
-        {
-            currentIndex++;
-            node = node.next;
-        }
-
-        return node;
-    }
-
-    public void removeAll()
-    {
-        head = null;
-        tail = null;
-        size = 0;
-    }
-
-    public void PrintList()
-    {
-        LinkedListNode runner = head;
-        while (runner != null)
-        {
-            Console.WriteLine(runner.data);
-            runner = runner.next;
-        }
-    }
-
-    public int getSize()
-    {
-        return size;
-    }
-
-    public string getAt(int index)
-    {
-        LinkedListNode node = findNode(index);
-
-        if (node == null)
-        {
-            return null;
-        }
-        else
-        {
-            return node.data;
-        }
-
-    }
-
-    public void setAt(int index, String data)
-    {
-        LinkedListNode node = findNode(index);
-
-        if (node != null)
-        {
-            node.data = data;
+            //return  null;
+            return new LinkedListIterator(head);
         }
     }
 }
+

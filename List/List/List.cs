@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace LinkedList
+namespace List.DbLinkedList
 {
     class List
     {
@@ -13,13 +13,21 @@ namespace LinkedList
         {
             DbLinkedList linkedList = new DbLinkedList();
             DbLinkedList linkedList1 = new DbLinkedList();
+            LinkedListIterator iterator;
 
             linkedList.addAtFront("Isai");
             linkedList.addAtFront("Deni");
             linkedList.addAtFront("Romina");
             linkedList.addAtFront("Angel");
             linkedList.addAtFront("Salvador");
-            linkedList.PrintList(); //Debe imprimir Isai, Deni, Romina, Angel, Salvador
+            //linkedList.PrintList(); //Debe imprimir Isai, Deni, Romina, Angel, Salvador
+            iterator = linkedList.getIterator();
+
+            while (iterator.hasNext())
+            {
+                String name = iterator.next();
+                Console.WriteLine(name); //Debe imprimir Isai, Deni, Romina, Angel, Salvador
+            }
             Console.WriteLine("El team 1 tiene: " + linkedList.getSize() + " integrantes"); //Debe tener 5 integrantes
             Console.WriteLine();
             linkedList.remove(0);
@@ -43,7 +51,14 @@ namespace LinkedList
             linkedList1.addAtTail("Paulina");
             linkedList1.addAtTail("Erik");
             linkedList1.addAtTail("Miguel");
-            linkedList1.PrintList(); //Debe imprimir Sofia, Rita, Andrea, Neftali, Paulina
+            //linkedList1.PrintList(); //Debe imprimir Sofia, Rita, Andrea, Neftali, Paulina
+            iterator = linkedList1.getIterator();
+
+            while (iterator.hasNext())
+            {
+                String name = iterator.next();
+                Console.WriteLine(name);    //Debe imprimir Sofia, Rita, Andrea, Neftali, Paulina
+            }
             Console.WriteLine("El team 2 tiene: " + linkedList1.getSize() + " integrantes"); //Debe tener 7 integrantes
             Console.WriteLine();
             linkedList1.remove(2);
